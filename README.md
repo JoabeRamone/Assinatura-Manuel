@@ -1,8 +1,12 @@
-# assinatura_manuel
+# Canoi de assinatura ou desenho em Flutter
 
 Este é um exemplo de como criar um campo de assinatura ou para só rabiscar. Então eu criei duas
 pastas onde a CustomPainter mostrar colocar utilizar o Widget e a pasta plugin mostrar como utilizar
 o plugin Signature.
+
+Tem que configurar o caminho da main de cada pasta para conseguir executar o projeto.
+
+link do artigo: 
 
 ## Getting Started
 
