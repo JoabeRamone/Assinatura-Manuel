@@ -1,6 +1,9 @@
-import 'dart:ui';
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:signature/signature.dart';
 
 import 'assinatura.dart';
@@ -18,15 +21,29 @@ class _MyAppState extends State<MyApp> {
     penColor: Colors.black,
     exportBackgroundColor: Colors.transparent,
   );
-  var data;
+  Uint8List data;
 
   Future<void> _criarImagem(context) async {
-    var result = await Navigator.of(context).push(
+    Uint8List result = await Navigator.of(context).push(
       MaterialPageRoute(builder: (BuildContext context) => Assinatura(_controller)),
     );
     setState(() {
       data = result;
     });
+
+    _salvarImagemNaGaleria(data);
+  }
+
+  void _salvarImagemNaGaleria(pngBytes) async {
+    final directory = (await getApplicationDocumentsDirectory()).path;
+    File imgFile = File('$directory/photo.png');
+    await imgFile.writeAsBytes(pngBytes);
+
+      if (imgFile.path != null) {
+        GallerySaver.saveImage(imgFile.path).then((a) {
+        print('salvo');
+        });
+      }
   }
 
   @override

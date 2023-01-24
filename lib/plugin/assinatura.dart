@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:signature/signature.dart';
 
@@ -30,14 +32,12 @@ class _AssinaturaState extends State<Assinatura> {
               ),
             ),
           ),
-          FlatButton(
+          TextButton(
               onPressed: () async {
-                var data = await widget._controller.toPngBytes();
+                Uint8List data = await widget._controller.toPngBytes();
 
                 Navigator.pop(context, data);
               },
-              color: Colors.green,
-              textColor: Colors.white,
               child: Text('Concluir'))
         ],
       ),
